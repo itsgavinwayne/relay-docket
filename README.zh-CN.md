@@ -23,6 +23,8 @@ python -m pip install .
 cp config.example.toml relay-audit.toml
 ```
 
+也可在[发布页](https://github.com/itsgavinwayne/relay-docket/releases/latest)下载 wheel，将上面的 `python -m pip install .` 换成 `python -m pip install /path/to/relay_audit-0.1.0-py3-none-any.whl`。
+
 编辑 `relay-audit.toml`，填入中转基础地址（省略 `/v1`）、认证方式、AWS profile、账户、区域、日志组、调用角色 ARN 和预期模型 ID。`model_map` 左边填中转接受的模型别名。若 AWS 日志只记录 inference profile，在 `profile_models` 中填写已确认的基础模型映射。
 
 在本地环境或密钥管理器设置 `RELAY_AUDIT_RELAY_KEY`，然后运行：

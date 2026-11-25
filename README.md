@@ -23,6 +23,8 @@ python -m pip install .
 cp config.example.toml relay-audit.toml
 ```
 
+The [release page](https://github.com/itsgavinwayne/relay-docket/releases/latest) also provides a wheel. To use it, download the wheel and replace `python -m pip install .` with `python -m pip install /path/to/relay_audit-0.1.0-py3-none-any.whl`.
+
 Edit `relay-audit.toml` and set the relay base URL without `/v1`, authentication method, AWS profile/account/region/log group, invocation-role ARN, and expected model IDs. The keys in `model_map` are the model names you send to your relay. When AWS records an inference profile, map it to its verified base model in `profile_models`.
 
 Set `RELAY_AUDIT_RELAY_KEY` in your local environment or secret manager. Run these commands in that same environment.
