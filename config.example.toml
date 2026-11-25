@@ -1,0 +1,32 @@
+[profiles.default]
+relay_url = "https://relay.example.com"
+relay_auth = "x-api-key"
+relay_key_env = "RELAY_AUDIT_RELAY_KEY"
+local_token_env = "RELAY_AUDIT_LOCAL_TOKEN"
+aws_profile = "bedrock-auditor"
+aws_account = "123456789012"
+aws_region = "us-east-1"
+log_group = "/relay-audit/bedrock"
+allowed_roles = ["arn:aws:iam::123456789012:role/RelayBedrockInvoke"]
+state_dir = ".relay-audit"
+sample_basis_points = 500
+log_wait = 180
+clock_skew = 5
+max_body_bytes = 4194304
+max_log_pages = 50
+max_concurrency = 16
+max_queue = 1000
+retention_days = 7
+upstream_timeout = 120.0
+port = 8765
+# upstream_request_id_header = "x-bedrock-request-id"
+# s3_bucket = "my-bedrock-logs"
+# s3_prefix = "AWSLogs/123456789012/BedrockModelInvocationLogs"
+
+# Use your relay aliases and the exact IDs enabled in your AWS account/region.
+[profiles.default.model_map]
+"claude-sonnet" = ["anthropic.claude-sonnet-4-6"]
+
+# Explicit mapping for inference-profile IDs / ARNs observed in your AWS logs.
+[profiles.default.profile_models]
+"us.anthropic.claude-sonnet-4-6" = ["anthropic.claude-sonnet-4-6"]

@@ -1,0 +1,12 @@
+.venv/
+*.pyc
+__pycache__/
+.pytest_cache/
+dist/
+relay-audit.toml
+.relay-audit/
+.env
+.env.*
+!.env.example
+releases/
+.DS_Store
