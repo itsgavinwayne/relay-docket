@@ -10,6 +10,18 @@ Relay Docket audits an Anthropic-compatible relay against Amazon Bedrock invocat
 | Passive sampling | `relay-audit serve` | Real traffic forwarded through a loopback proxy. Defaults to 5% and samples after the response. |
 | Report | `relay-audit report` | Local results, including AWS request IDs and mismatch or evidence-gap reasons |
 
+## Install with an agent
+
+Copy this prompt into a local coding agent with terminal access.
+
+```text
+Install Relay Docket from https://github.com/itsgavinwayne/relay-docket on this machine. Read the repository README and run the installation yourself. Use a dedicated Python 3.12+ virtual environment, reuse an existing checkout if present, and copy config.example.toml to relay-audit.toml only if that file does not already exist. Verify that relay-audit --help works.
+
+If I already have a relay URL, model alias, and a readable AWS Bedrock log configuration, use those settings and run relay-audit doctor when the credentials are available locally. Keep secrets in local environment variables or a credential manager. Ask only for missing non-secret settings and tell me how to provide credentials locally without pasting them into chat.
+
+Run a paid test request or start the proxy only if I ask. Report the install path, what you verified, and the exact next command I can run. If AWS or relay details are missing, finish the local installation and mark live verification as pending.
+```
+
 ## Quick start
 
 **Requirements** Python 3.12+, an Anthropic-compatible relay that routes the test traffic to an AWS Bedrock Runtime account, and independent read access to that account’s invocation logs. AWS credentials use the local SDK credential chain. Configure Bedrock to deliver text input and output to a dedicated CloudWatch Logs group. Grant the audit identity `logs:FilterLogEvents` on that group. [AWS setup guide](https://docs.aws.amazon.com/bedrock/latest/userguide/model-invocation-logging.html)

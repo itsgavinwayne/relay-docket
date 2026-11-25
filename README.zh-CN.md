@@ -10,6 +10,18 @@ Relay Docket 用你能直接读取的 AWS Bedrock 调用日志核验 AI 中转�
 | 日常抽查 | `relay-audit serve` | 本地代理正常转发对话，响应结束后默认抽查 5% |
 | 查看报告 | `relay-audit report` | 查看实际模型、AWS 请求 ID 和差异或缺失原因 |
 
+## 用 Agent 安装
+
+把下面这段提示词复制给有终端权限的本地编程 Agent。
+
+```text
+请在这台电脑上安装 Relay Docket，仓库是 https://github.com/itsgavinwayne/relay-docket。阅读仓库 README 并直接执行安装。使用独立的 Python 3.12+ 虚拟环境。如果已有项目副本，优先复用。仅在 relay-audit.toml 不存在时从 config.example.toml 复制一份。安装后验证 relay-audit --help 能运行。
+
+如果我已配置中转地址、模型别名以及可读取的 AWS Bedrock 日志，使用现有配置，并在本机凭证就绪时运行 relay-audit doctor。密钥放在本地环境变量或凭证管理器里。只询问缺失的非敏感配置，并告诉我如何在本机设置凭证，无需把密钥粘贴到聊天里。
+
+只有我明确要求时才发送付费测试请求或启动代理。完成后告诉我安装位置、已验证的内容和下一条可执行命令。如果缺少 AWS 或中转信息，先完成本地安装，把真实核验标记为待配置。
+```
+
 ## 快速开始
 
 **准备条件**　Python 3.12+、一个能把受检流量路由到 Bedrock Runtime 的 Anthropic 兼容中转，以及独立的 AWS 调用日志读取权限。在调用所在区域启用 Bedrock Model Invocation Logging，将文本输入输出送到专用 CloudWatch 日志组，并给审计身份授予该日志组的 `logs:FilterLogEvents` 权限。 [AWS 配置文档](https://docs.aws.amazon.com/bedrock/latest/userguide/model-invocation-logging.html)
